@@ -7,8 +7,22 @@
   <title>Welcome to WebStorm</title>
   <script>
       $(document).ready(function() {
-          
-      }
+          var forumLogin = function() {
+              $.ajax({
+                  url: ".r/login",
+                  data: JSON.stringify({
+                      "username": $('#username').val(),
+                      "password": $('#password').val()
+                  }),
+                  method: "get",
+                  dataType: "json",
+                  contentType: 'application/json; charset=UTF-8',
+                  success: alert("It works")
+              });
+              $('#send').click(forumLogin);
+
+          };
+      });
   </script>
 </head>
 <body>
