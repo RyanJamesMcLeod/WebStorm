@@ -10,11 +10,11 @@
           var forumLogin = function() {
               $.ajax({
                   url: "./r/login",
-                  method: "get",
-                  data: {
+                  method: "post",
+                  data: JSON.stringify({
                         "username": $('#username').val(),
                         "password": $('#password').val()
-                  },
+                  }),
                   dataType: "json",
                   contentType: 'application/json; charset=UTF-8',
                   success: function (data) {
