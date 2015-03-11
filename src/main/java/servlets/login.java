@@ -38,7 +38,7 @@ public class login {
         if (jsonArray.isEmpty())
             return Response.status(500).build();
         else
-            return Response.ok().build();
+            return Response.ok(jsonArray).build();
 
     }
 
