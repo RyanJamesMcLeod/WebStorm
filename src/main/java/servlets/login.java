@@ -34,7 +34,11 @@ public class login {
     @Produces("application/json")
     @Consumes("application/json")
     public Response getAll(JsonObject json) {
-        return Response.ok(getResults("SELECT * FROM users WHERE username = ? AND password = ?", json.getString("username"), json.getString("password"))).build();
+        JsonArray jsonArray = getResults("SELECT * FROM users WHERE username = ? AND password = ?", json.getString("username"), json.getString("password"));
+        if (jsonArray.isEmpty())
+            return Response.status(500).build();
+        else
+            return Response.ok().build();
 
     }
 
