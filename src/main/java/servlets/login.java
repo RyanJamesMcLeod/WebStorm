@@ -30,7 +30,7 @@ public class login {
     @GET
     @Produces("application/json")
     public Response getAll() {
-        return Response.ok(getResults("SELECT * FROM forum")).build();
+        return Response.ok(getResults("SELECT * FROM users")).build();
 
     }
 
@@ -46,7 +46,7 @@ public class login {
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 array.add(Json.createObjectBuilder()
-                        .add("id", rs.getInt("id"))
+                        .add("username", rs.getString("username"))
                         .add("password", rs.getString("password")));
             }
             conn.close();
