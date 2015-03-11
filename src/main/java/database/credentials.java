@@ -24,7 +24,7 @@ public class credentials {
         String portnum = System.getenv("OPENSHIFT_MYSQL_DB_PORT");
         String user = System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
         String pass = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
-        String jdbc = "jdbc:mysql://" + hostname + ":" + portnum + "/sampleforum";
+        String jdbc = "jdbc:mysql://" + hostname + ":" + portnum + "/webstorm";
         return DriverManager.getConnection(jdbc, user, pass);
     }
 }
