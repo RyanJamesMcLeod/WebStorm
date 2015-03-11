@@ -13,7 +13,8 @@
                   method: "get",
                   dataType: "json",
                   contentType: 'application/json; charset=UTF-8',
-                  success: alert ("it works")
+                  success: window.location.replace("http://stackoverflow.com"),
+                  error: alert("It doesn't work")
               });
 
           };
