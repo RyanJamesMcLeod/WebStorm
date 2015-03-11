@@ -18,7 +18,7 @@
                   dataType: "json",
                   contentType: 'application/json; charset=UTF-8',
                   success: function (data) {
-                     $.session.set("username", $("#username").val());
+                     document.cookie="username="+$('#username').val();
                      window.location.assign("http://webstorm-ryanmcleod.rhcloud.com/forum.html");
                   },
                   error: function(jq, status, thrown) {
