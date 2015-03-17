@@ -12,7 +12,9 @@ and open the template in the editor.
         <script>
             $(document).ready(function () {
                 var getForum = function() {
-                    $('#text').val('');
+                    $('#username').val('');
+                    $('#date').val('');
+                    $('#information').val('');
                     $.getJSON("./r/forum", function (data) {
                         $('#forum').html('');
                         for (var i = 0; i < data.length; i++)
