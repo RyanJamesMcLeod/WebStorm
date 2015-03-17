@@ -10,17 +10,18 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script>
-      $(document).ready(function() {
-          $('#text').val('');
-          $.getJSON("./r/forum", function(data) {
-              $('#forum').html('');
-              for (var i = 0; i < data.length; i++)
-                   $('forum').append("<h2>" + data[i].username + "</h2>" + "<h2>" + data[i].date + "</h2>" + "<h2>" + data[i].information + "</h2>");
-          });
-          getForum();
-
-      });
-  </script>
+            $(document).ready(function () {
+                var getForum = function() {
+                    $('#text').val('');
+                    $.getJSON("./r/forum", function (data) {
+                        $('#forum').html('');
+                        for (var i = 0; i < data.length; i++)
+                            $('forum').append("<h2>" + data[i].username + "</h2>" + "<h2>" + data[i].date + "</h2>" + "<h2>" + data[i].information + "</h2>");
+                    });
+                }
+                getForum();
+            });
+        </script>
     </head>
     <body>
         <div>Welcome to the Forums</div>
