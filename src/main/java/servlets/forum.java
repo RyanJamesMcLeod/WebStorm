@@ -27,21 +27,15 @@ import javax.ws.rs.core.Response;
  *
  * @author Ryan
  */
-@Path("/login")
-public class login {
-
-    @POST
+@Path("/forum")
+public class forum {
+    
+    @GET
     @Produces("application/json")
-    @Consumes("application/json")
-    public Response getAll(JsonObject json) {
-        JsonArray jsonArray = getResults("SELECT * FROM users WHERE username = ? AND password = ?", json.getString("username"), json.getString("password"));
-        if (jsonArray.isEmpty())
-            return Response.status(500).build();
-        else
-            return Response.ok(jsonArray).build();
-
+    public Response getAll() {
+        return Response.ok(getResults("SELECT * FROM testchannel")).build();
     }
-
+    
     public static JsonArray getResults(String sql, String... params) {
         JsonArray json = null;
         try {
@@ -55,7 +49,8 @@ public class login {
             while (rs.next()) {
                 array.add(Json.createObjectBuilder()
                         .add("username", rs.getString("username"))
-                        .add("password", rs.getString("password")));
+                        .add("date", rs.getString("date"))
+                        .add("information", rs.getString("information")));
             }
             conn.close();
             json = array.build();
@@ -64,4 +59,38 @@ public class login {
         }
         return json;
     }
+//    @POST
+//    @Produces("application/json")
+//    @Consumes("application/json")
+//    public Response getAll(JsonObject json) {
+//        JsonArray jsonArray = getResults("SELECT * FROM testchannel");
+//        if (jsonArray.isEmpty())
+//            return Response.status(500).build();
+//        else
+//            return Response.ok(jsonArray).build();
+//
+//    }
+//
+//    public static JsonArray getResults(String sql, String... params) {
+//        JsonArray json = null;
+//        try {
+//            JsonArrayBuilder array = Json.createArrayBuilder();
+//            Connection conn = getConnection();
+//            PreparedStatement pstmt = conn.prepareStatement(sql);
+//            for (int i = 0; i < params.length; i++) {
+//                pstmt.setString(i + 1, params[i]);
+//            }
+//            ResultSet rs = pstmt.executeQuery();
+//            while (rs.next()) {
+//                array.add(Json.createObjectBuilder()
+//                        .add("username", rs.getString("username"))
+//                        .add("password", rs.getString("password")));
+//            }
+//            conn.close();
+//            json = array.build();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return json;
+//    }
 }
