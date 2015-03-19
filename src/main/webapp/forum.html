@@ -11,7 +11,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="http://code.jquery.com/jquery.min.js"></script>
         <script>
-            $(document).load(function () {
+            $(document).ready(function () {
                 var getForum = function () {
                     $.ajax({
                         url: "./r/forum",
@@ -31,7 +31,7 @@ and open the template in the editor.
                         }
                     });
                 };
-                $('#submit').click(getForum);
+                getForum();
             });
         </script>
     </head>
