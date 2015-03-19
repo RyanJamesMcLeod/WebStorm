@@ -11,19 +11,22 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script>
             $(document).ready(function () {
-                var getForum = function() {
+                var getForum = function () {
                     $.ajax({
                         url: "./r/forum",
                         method: "get",
                         dataType: "json",
                         contentType: 'application/json; charset=UTF-8',
-                        success: function(data) {
+                        success: function () {
                             $.getJSON("./r/forum", function (data) {
                                 $('#forum').html('');
                                 for (var i = 0; i < data.length; i++)
-                                    $('#forum').append("<h2>" + data[i].username + "</h2>" + "<h2>" + 
+                                    $('#forum').append("<h2>" + data[i].username + "</h2>" + "<h2>" +
                                             data[i].date + "</h2>" + "<h2>" + data[i].information + "</h2>");
                             });
+                        },
+                        error: function (jq, status, thrown) {
+                            alert(jq + "\n" + status + "\n" + thrown);
                         }
                     });
                 };
