@@ -32,6 +32,25 @@ and open the template in the editor.
                     });
                 };
                 getForum();
+                var getChannel = function () {
+                    $.ajax({
+                        url: "./r/forum/channels",
+                        method: "get",
+                        dataType: "json",
+                        contentType: 'application/json; charset=UTF-8',
+                        success: function () {
+                            $.getJSON("./r/forum", function (data) {
+                                $('#forum').html('');
+                                for (var i = 0; i < data.length; i++)
+                                    $('#select').append("<option>" + data[i].channel_name + "</option>");
+                            });
+                        },
+                        error: function (jq, status, thrown) {
+                            alert(jq + "\n" + status + "\n" + thrown);
+                        }
+                    });
+                };
+                getChannel();
             });
         </script>
     </head>

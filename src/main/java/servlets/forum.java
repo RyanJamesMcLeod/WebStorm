@@ -44,6 +44,13 @@ public class forum implements Serializable{
         return Response.ok(getResults("SELECT * FROM testchannel")).build();
     }
     
+    @GET
+    @Path("channels")
+    @Produces("application/json")
+    public Response getAllChannels() {
+        return Response.ok(getResults("SELECT * FROM channels ORDER BY channel_name")).build();
+    }
+    
     public static JsonArray getResults(String sql, String... params) {
         JsonArray json = null;
         try {
@@ -59,6 +66,28 @@ public class forum implements Serializable{
                         .add("username", rs.getString("username"))
                         .add("date", rs.getString("date"))
                         .add("information", rs.getString("information")));
+            }
+            conn.close();
+            json = array.build();
+        } catch (SQLException ex) {
+            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return json;
+    }
+    
+    public static JsonArray getChannels(String sql, String... params) {
+        JsonArray json = null;
+        try {
+            JsonArrayBuilder array = Json.createArrayBuilder();
+            Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            for (int i = 0; i < params.length; i++) {
+                pstmt.setString(i + 1, params[i]);
+            }
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                array.add(Json.createObjectBuilder()
+                        .add("channel_name", rs.getString("channel_name")));
             }
             conn.close();
             json = array.build();
