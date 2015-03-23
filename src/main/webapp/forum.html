@@ -40,9 +40,9 @@ and open the template in the editor.
                         contentType: 'application/json; charset=UTF-8',
                         success: function () {
                             $.getJSON("./r/forum/channels", function (data) {
-                                $('#select').html('');
+                                $('#select').empty('');
                                 for (var i = 0; i < data.length; i++)
-                                    $('#select').append("<option>" + data[i].channel_name + "</option>");
+                                    $('#select').append('<option value="' + data[i].channel_name + '">' + data[i].channel_name + '</option>');
                             });
                         },
                         error: function (jq, status, thrown) {
