@@ -5,13 +5,17 @@
  */
 package servlets;
 
+import beans.forumBean;
 import static database.credentials.getConnection;
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
@@ -28,7 +32,11 @@ import javax.ws.rs.core.Response;
  * @author Ryan
  */
 @Path("/forum")
-public class forum {
+@SessionScoped
+public class forum implements Serializable{
+    
+    @EJB
+    forumBean login;
     
     @GET
     @Produces("application/json")

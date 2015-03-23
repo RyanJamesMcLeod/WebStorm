@@ -5,13 +5,17 @@
  */
 package servlets;
 
+import beans.forumBean;
 import static database.credentials.getConnection;
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
@@ -28,7 +32,11 @@ import javax.ws.rs.core.Response;
  * @author Ryan
  */
 @Path("/login")
-public class login {
+@SessionScoped
+public class login implements Serializable{
+    
+    @EJB
+    forumBean login;
 
     @POST
     @Produces("application/json")
@@ -37,9 +45,10 @@ public class login {
         JsonArray jsonArray = getResults("SELECT * FROM users WHERE username = ? AND password = ?", json.getString("username"), json.getString("password"));
         if (jsonArray.isEmpty())
             return Response.status(500).build();
-        else
+        else {
+            login.setUsername(json.getString("username"));
             return Response.ok(jsonArray).build();
-
+        }
     }
 
     public static JsonArray getResults(String sql, String... params) {
