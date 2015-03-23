@@ -48,7 +48,7 @@ public class forum implements Serializable{
     @Path("channels")
     @Produces("application/json")
     public Response getAllChannels() {
-        return Response.ok(getResults("SELECT * FROM channels ORDER BY channel_name")).build();
+        return Response.ok(getChannels("SELECT * FROM channels ORDER BY channel_name")).build();
     }
     
     public static JsonArray getResults(String sql, String... params) {
