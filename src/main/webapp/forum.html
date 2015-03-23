@@ -40,6 +40,7 @@ and open the template in the editor.
                         contentType: 'application/json; charset=UTF-8',
                         success: function () {
                             $.getJSON("./r/forum/channels", function (data) {
+                                $('#channelname').append(data[i].channel_name);
                                 $('#select').empty();
                                 for (var i = 0; i < data.length; i++)
                                     $('#select').append('<option value="' + data[i].channel_name + '">' + data[i].channel_name + '</option>');
@@ -58,6 +59,7 @@ and open the template in the editor.
         <div>Welcome to the Forums</div>
         <div>Username: <div id="username"></div></div>
         <div>Channel: <select id="select"></select></div>
+        <div id="channelname"></div>
         <div>
             <p><textarea id="text"></textarea></p>
             <p><button id="submit">Submit</button></p>
