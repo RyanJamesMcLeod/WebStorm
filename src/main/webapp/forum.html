@@ -41,7 +41,7 @@ and open the template in the editor.
                         success: function () {
                             $.getJSON("./r/forum/channels", function (data) {
                                 $('#channelname').html('');
-                                $('#channelname').append(data[i].channel_name);
+                                $('#channelname').append("<h3>" + data[i].channel_name + "</h3>");
                                 $('#select').empty();
                                 for (var i = 0; i < data.length; i++)
                                     $('#select').append('<option value="' + data[i].channel_name + '">' + data[i].channel_name + '</option>');
