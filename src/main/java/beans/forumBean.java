@@ -15,7 +15,6 @@ import javax.ejb.Stateful;
 public class forumBean {
     
     String username = "";
-    String channel = "testchannel";
 
     public String getUsername() {
         return username;
@@ -23,14 +22,6 @@ public class forumBean {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getChannel() {
-        return channel;
-    }
-
-    public void setChannel(String channel) {
-        this.channel = channel;
     }
     
 }
